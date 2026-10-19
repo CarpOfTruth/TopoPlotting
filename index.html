@@ -194,6 +194,11 @@
             <div data-slot="2"><span>Slot 2</span><button data-action="load">Load</button><button data-action="save">Save</button></div>
             <div data-slot="3"><span>Slot 3</span><button data-action="load">Load</button><button data-action="save">Save</button></div>
           </div>
+          <div class="export-grid">
+            <button id="exportPresetsBtn" class="export">Export presets</button>
+            <button id="importPresetsBtn" class="export">Import presets</button>
+          </div>
+          <input id="presetFile" type="file" accept="application/json,.json" hidden>
           <p id="saveStatus" class="help">Saved separately for each region in this browser.</p>
         </section>
 
@@ -208,6 +213,6 @@
       </aside>
     </section>
   </main>
-  <script src="app.js?v=20261018am"></script>
+  <script src="app.js?v=20261018ao"></script>
 </body>
 </html>
