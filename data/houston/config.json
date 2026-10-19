@@ -1,0 +1,121 @@
+{
+  "name": "Central Houston",
+  "width": 3938,
+  "height": 3246,
+  "bounds": [
+    261990.81945843197,
+    3288076.198494789,
+    277742.819458432,
+    3301060.198494789
+  ],
+  "geoBounds": [
+    -95.46,
+    29.699999999999992,
+    -95.2999782198539,
+    29.820008588466482
+  ],
+  "minElevation": -0.010571964085102081,
+  "maxElevation": 30.338838577270508,
+  "pixelSize": 4.0,
+  "crs": "EPSG:32615",
+  "horizontalDatum": "NAD83",
+  "verticalDatum": "NAVD88",
+  "source": "USGS 3DEP TX_Houston_B24 1 m bare-earth DEM, resampled to 4 m",
+  "sourceUrl": "https://apps.nationalmap.gov/downloader/",
+  "sourceApi": "https://tnmaccess.nationalmap.gov/api/v1/products",
+  "sourceService": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+  "sourceDataset": "TX_Houston_B24",
+  "roadsAttribution": "Roads \u00a9 OpenStreetMap contributors",
+  "surveyPeriod": [
+    "2024-02-18",
+    "2025-01-31"
+  ],
+  "publicationDate": "2026-06-18",
+  "serviceCurrency": "2026-09-28",
+  "intervalRanges": {
+    "fine": [
+      0.25,
+      5,
+      0.25
+    ],
+    "index": [
+      0.5,
+      10,
+      0.5
+    ]
+  },
+  "detailLevelRange": [
+    1,
+    12,
+    1
+  ],
+  "defaultView": {
+    "bounds": [
+      263466.00387698197,
+      3289153.940294288,
+      276268.49643249926,
+      3299979.8314091726
+    ],
+    "cropWidthKm": 12.6,
+    "aspect": 1.4,
+    "detailLevels": 4,
+    "indexInterval": 2,
+    "detailCeiling": 50,
+    "minimumPrintedGapMm": 0.2,
+    "minimumContourLengthMm": 2,
+    "elevationColors": true,
+    "penWidthMm": 0.3,
+    "indexPenWidthMm": 0.5,
+    "smoothingPercent": 45,
+    "preserveContours": true,
+    "indexGapFilter": true,
+    "indexGapMm": 0.2
+  },
+  "presets": {
+    "central": {
+      "title": "Downtown + Buffalo Bayou",
+      "bounds": [
+        264940.8987249794,
+        3290231.859643627,
+        275762.8180253621,
+        3298881.0447938223
+      ],
+      "interval": 2
+    },
+    "memorial": {
+      "title": "Memorial Park + bayou",
+      "bounds": [
+        262085.26330842992,
+        3292510.4268533248,
+        269939.00777839374,
+        3297890.8208959224
+      ],
+      "interval": 1
+    },
+    "heights": {
+      "title": "Heights + north bayous",
+      "bounds": [
+        265057.60023345554,
+        3295774.5988789485,
+        273874.2311773312,
+        3301060.198494789
+      ],
+      "interval": 1
+    },
+    "medical_rice": {
+      "title": "Medical Center + Rice",
+      "bounds": [
+        266442.76070875314,
+        3288076.198494789,
+        269601.4294496193,
+        3290911.0782256867
+      ],
+      "cropWidthKm": 3.2,
+      "interval": 1
+    }
+  },
+  "previewContourStride": 10,
+  "exportContourStride": 1,
+  "previewWorkMargin": 0.12,
+  "previewStrideScaleKm": 1.25
+}

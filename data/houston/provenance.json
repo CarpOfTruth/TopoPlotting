@@ -1,0 +1,29 @@
+{
+  "dataset": "TX_Houston_B24",
+  "product": "USGS standard 1 meter DEM (bare earth)",
+  "acquisitionStart": "2024-02-18",
+  "acquisitionEnd": "2025-01-31",
+  "publicationDate": "2026-06-18",
+  "metadataUrl": "https://thor-f5.er.usgs.gov/ngtoc/metadata/waf/elevation/1_meter/geotiff/TX_Houston_B24/USGS_1M_15_x26y329_TX_Houston_B24.xml",
+  "catalogApi": "https://tnmaccess.nationalmap.gov/api/v1/products?bbox=-95.46,29.70,-95.30,29.82&datasets=Digital%20Elevation%20Model%20(DEM)%201%20meter",
+  "imageService": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+  "mosaicRestriction": "Name = 'TX_Houston_B24'",
+  "processing": "Bilinear resampling by the USGS image service from 1 m to a 4 m UTM Zone 15N grid.",
+  "outputBounds": [
+    261990.81945843197,
+    3288076.198494789,
+    277742.819458432,
+    3301060.198494789
+  ],
+  "outputGeoBoundsApprox": [
+    -95.46,
+    29.699999999999992,
+    -95.2999782198539,
+    29.820008588466482
+  ],
+  "outputShape": [
+    3246,
+    3938
+  ],
+  "outputPixelSizeMeters": 4.0
+}

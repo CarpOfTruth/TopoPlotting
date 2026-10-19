@@ -1,0 +1,76 @@
+{
+  "name": "Mission Valley",
+  "width": 1500,
+  "height": 1071,
+  "bounds": [
+    483440.2967060629,
+    3623890.1939738053,
+    489440.2967060629,
+    3628174.1939738053
+  ],
+  "minElevation": 4.429858684539795,
+  "maxElevation": 124.81804656982422,
+  "pixelSize": 4,
+  "crs": "EPSG:32611",
+  "intervalRanges": {
+    "fine": [
+      1,
+      10,
+      0.5
+    ],
+    "index": [
+      1,
+      20,
+      0.5
+    ]
+  },
+  "surveyPeriod": [
+    "2024-11-08",
+    "2024-12-01"
+  ],
+  "defaultView": {
+    "bounds": [
+      483440.2967060629,
+      3623890.1939738053,
+      489440.2967060629,
+      3628174.1939738053
+    ],
+    "cropWidthKm": 5.6,
+    "aspect": 1.4,
+    "adaptive": true,
+    "indexInterval": 10,
+    "detailCeiling": 80,
+    "minimumPrintedGapMm": 0.7,
+    "minimumContourLengthMm": 5,
+    "elevationColors": true,
+    "penWidthMm": 0.3,
+    "indexPenWidthMm": 0.5,
+    "smoothingPercent": 25,
+    "detailLevels": 5
+  },
+  "presets": {
+    "valley": {
+      "title": "Both valley walls",
+      "bounds": [
+        483440.2967060629,
+        3623890.1939738053,
+        489440.2967060629,
+        3628174.1939738053
+      ],
+      "interval": 10
+    },
+    "south": {
+      "title": "South rim canyons",
+      "bounds": [
+        484741.585782928,
+        3624082.4724373156,
+        488141.585782928,
+        3626282.4724373156
+      ],
+      "interval": 5
+    }
+  },
+  "previewContourStride": 2,
+  "exportContourStride": 1,
+  "previewWorkMargin": 0.12
+}

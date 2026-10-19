@@ -1,0 +1,234 @@
+{
+  "name": "San Francisco Bay Area",
+  "width": 1927,
+  "height": 2916,
+  "bounds": [
+    495554.11120069976,
+    4100419.1226931815,
+    611174.1112006998,
+    4275379.122693181
+  ],
+  "geoBounds": [
+    -123.05,
+    37.05,
+    -121.75,
+    38.62
+  ],
+  "minElevation": -125.90324401855469,
+  "maxElevation": 1162.3226318359375,
+  "pixelSize": 60.0,
+  "crs": "EPSG:32610",
+  "verticalDatum": "NAVD88",
+  "source": "NOAA CUDEM 2022\u20132023 topobathymetry with current USGS 3DEP land overlap, resampled to 60 m",
+  "sourceUrl": "https://www.ncei.noaa.gov/products/coastal-elevation-models",
+  "roadsAttribution": "Roads \u00a9 OpenStreetMap contributors",
+  "zeroBoundary": true,
+  "zeroColor": "#173746",
+  "intervalRanges": {
+    "fine": [
+      2,
+      50,
+      1
+    ],
+    "index": [
+      5,
+      200,
+      5
+    ],
+    "bathyFine": [
+      5,
+      50,
+      5
+    ],
+    "bathyIndex": [
+      10,
+      200,
+      10
+    ]
+  },
+  "detailLevelRange": [
+    1,
+    12,
+    1
+  ],
+  "bathymetryDetailLevelRange": [
+    1,
+    12,
+    1
+  ],
+  "previewContourStride": 2,
+  "exportContourStride": 1,
+  "previewWorkMargin": 0.12,
+  "defaultView": {
+    "bounds": [
+      528965.2869115816,
+      4170362.544410113,
+      566133.5781138358,
+      4208299.4562896
+    ],
+    "cropWidthKm": 38,
+    "aspect": 1.4,
+    "detailLevels": 5,
+    "adaptive": true,
+    "indexInterval": 50,
+    "bathymetryDetailLevels": 5,
+    "bathymetryIndexInterval": 100,
+    "bathymetryFineDepth": 500,
+    "detailCeiling": 500,
+    "minimumPrintedGapMm": 0.4,
+    "minimumContourLengthMm": 1,
+    "elevationColors": true,
+    "dynamicColors": true,
+    "penWidthMm": 0.3,
+    "indexPenWidthMm": 0.5,
+    "smoothingPercent": 45,
+    "preserveContours": true,
+    "indexGapFilter": true,
+    "indexGapMm": 0.4
+  },
+  "presets": {
+    "golden_gate": {
+      "title": "Golden Gate + Marin",
+      "bounds": [
+        533353.98140448,
+        4172598.1791551886,
+        558181.8248266289,
+        4208239.582261601
+      ],
+      "cropWidthKm": 28,
+      "aspect": 0.7142857,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 100,
+      "interval": 10,
+      "bathymetryInterval": 20
+    },
+    "point_reyes": {
+      "title": "Point Reyes",
+      "bounds": [
+        498240.72048966493,
+        4190281.9167492706,
+        532546.7271651084,
+        4225851.378197423
+      ],
+      "cropWidthKm": 34,
+      "aspect": 1.4,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 100,
+      "interval": 10,
+      "bathymetryInterval": 20
+    },
+    "sf_peninsula": {
+      "title": "San Francisco + Peninsula",
+      "bounds": [
+        536944.9520068992,
+        4141548.7607259867,
+        563709.130164907,
+        4190526.15235595
+      ],
+      "cropWidthKm": 28,
+      "aspect": 0.7142857,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 100,
+      "interval": 10,
+      "bathymetryInterval": 20
+    },
+    "south_bay": {
+      "title": "South Bay + San Jose",
+      "bounds": [
+        566248.8183760116,
+        4111775.82179851,
+        606563.3058639541,
+        4156565.060800256
+      ],
+      "cropWidthKm": 40,
+      "aspect": 1.4,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 50,
+      "interval": 10,
+      "bathymetryInterval": 10
+    },
+    "east_bay": {
+      "title": "East Bay hills",
+      "bounds": [
+        556990.9767801496,
+        4167181.625481011,
+        595271.4401809863,
+        4217461.042569421
+      ],
+      "cropWidthKm": 38,
+      "aspect": 1.4,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 50,
+      "interval": 10,
+      "bathymetryInterval": 10
+    },
+    "north_bay": {
+      "title": "Napa + Sonoma + Santa Rosa",
+      "bounds": [
+        512194.1904162913,
+        4223576.85291883,
+        570085.5286173037,
+        4270473.788776305
+      ],
+      "cropWidthKm": 58,
+      "aspect": 1.4,
+      "indexInterval": 50,
+      "bathymetryIndexInterval": 100,
+      "interval": 10,
+      "bathymetryInterval": 20
+    }
+  },
+  "colorBands": [
+    {
+      "max": -500,
+      "label": "Below \u2212500 m",
+      "color": "#173f70"
+    },
+    {
+      "max": -100,
+      "label": "\u2212500 to \u2212100 m",
+      "color": "#225d91"
+    },
+    {
+      "max": 0,
+      "label": "\u2212100 to 0 m",
+      "color": "#4a9dcc"
+    },
+    {
+      "max": 100,
+      "label": "0\u2013100 m",
+      "color": "#245b63"
+    },
+    {
+      "max": 300,
+      "label": "100\u2013300 m",
+      "color": "#708653"
+    },
+    {
+      "max": 600,
+      "label": "300\u2013600 m",
+      "color": "#b18e4f"
+    },
+    {
+      "max": 1000,
+      "label": "600\u20131000 m",
+      "color": "#b86648"
+    },
+    {
+      "max": null,
+      "label": "Above 1000 m",
+      "color": "#744d5c"
+    }
+  ],
+  "dynamicColorBands": true,
+  "detailCeilingRange": [
+    20,
+    1200,
+    20
+  ],
+  "bathymetryDetailDepthRange": [
+    5,
+    150,
+    5
+  ]
+}

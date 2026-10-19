@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mission Valley Terrain Explorer</title>
+  <link rel="stylesheet" href="styles.css?v=20261018aj">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">TOPOPLOTTER</div>
+        <h1 id="mapTitle">Mission Valley Terrain Explorer</h1>
+      </div>
+      <div class="top-actions">
+        <label class="region-select"><span>Region</span><select id="region"><option value="mission">Mission Valley</option><option value="coast">San Diego Coast</option><option value="bay">San Francisco Bay Area</option><option value="houston">Central Houston</option></select></label>
+        <button id="homeBtn" class="quiet">Full valley</button>
+        <button id="addressBtn" class="primary">Center selected location</button>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <div class="map-shell" id="mapShell">
+        <canvas id="mapCanvas" aria-label="Interactive terrain map with elevation contours"></canvas>
+        <div class="map-hint">Scroll to zoom · drag to pan</div>
+        <div class="zoom-controls" aria-label="Map zoom controls"><button id="zoomIn" title="Zoom in">+</button><button id="zoomOut" title="Zoom out">−</button></div>
+        <div class="north">N ↑</div>
+        <div id="scaleBar" class="scale-bar"><span></span><b></b></div>
+        <div id="loading" class="loading">Preparing contours…</div>
+      </div>
+
+      <aside class="panel">
+        <section>
+          <h2>Contour drawing</h2>
+          <label class="control">
+            <span><b id="fineIntervalLabel">Detail subdivisions per index</b> <output id="detailLevelsValue">4× · 1.00 m</output></span>
+            <input id="detailLevels" type="range" min="1" max="16" value="4" step="1">
+          </label>
+          <label id="bathyFineControl" class="control" hidden>
+            <span><b>Water detail subdivisions per index</b> <output id="bathyDetailLevelsValue">3× · 10.00 m</output></span>
+            <input id="bathyDetailLevels" type="range" min="1" max="16" value="3" step="1">
+          </label>
+          <label class="switch-row"><input id="adaptive" type="checkbox" checked><span>Adaptive detail for plotting</span></label>
+          <div id="adaptiveSettings" class="sub-controls">
+            <label class="control compact">
+              <span><b id="indexIntervalLabel">Continuous index interval</b> <output id="baseValue">5 m</output></span>
+              <input id="baseInterval" type="range" min="1" max="20" value="5" step="0.5">
+            </label>
+            <label id="bathyIndexControl" class="control compact" hidden>
+              <span><b>Bathymetric index interval</b> <output id="bathyBaseValue">50 m</output></span>
+              <input id="bathyBaseInterval" type="range" min="10" max="100" value="50" step="10">
+            </label>
+            <label class="control compact">
+              <span><span id="detailCeilingLabel">Fine detail below</span> <output id="ceilingValue">60 m</output></span>
+              <input id="detailCeiling" type="range" min="20" max="120" value="60" step="5">
+            </label>
+            <label id="bathyDetailControl" class="control compact" hidden>
+              <span>Water fine detail shallower than <output id="bathyDetailValue">120 m</output></span>
+              <input id="bathyDetailDepth" type="range" min="20" max="400" value="120" step="10">
+            </label>
+            <label id="spacingControl" class="control compact">
+              <span>Target contour spacing <output id="spacingValue">0.4 mm</output></span>
+              <input id="minSpacing" type="range" min="0.2" max="1.2" value="0.4" step="0.1">
+            </label>
+            <label id="pathLengthControl" class="control compact">
+              <span>Minimum contour length <output id="pathLengthValue">0.5 mm</output></span>
+              <input id="minPathLength" type="range" min="0" max="5" value="0.5" step="0.25">
+            </label>
+            <label class="switch-row compact"><input id="preserveContours" type="checkbox" checked><span>Preserve index contour geometry</span></label>
+            <label class="switch-row compact"><input id="indexGapFilter" type="checkbox" checked><span>Select complete fine lines in crowded bands</span></label>
+            <label id="indexGapControl" class="control compact">
+              <span>Minimum clear line gap <output id="indexGapValue">2.0 mm</output></span>
+              <input id="indexGap" type="range" min="-0.5" max="1" value="0.4" step="0.05">
+            </label>
+            <p id="adaptiveHelp" class="help">Index contours remain continuous. Fine lines bridge short dense crossings, but sustained dense sections are trimmed. Tiny resulting fragments are removed by minimum contour length.</p>
+          </div>
+          <label class="switch-row"><input id="elevationColors" type="checkbox"><span>Preview elevation pens</span></label>
+          <label id="dynamicColorsRow" class="switch-row" hidden><input id="dynamicColors" type="checkbox" checked><span>Balance colors across this crop</span></label>
+          <p id="paletteModeReadout" class="help" hidden></p>
+          <div id="paletteStrip" class="palette-strip" aria-label="Six elevation colors">
+            <i title="Below 20 m" style="--swatch:#245b63"></i><i title="20–35 m" style="--swatch:#41776a"></i><i title="35–50 m" style="--swatch:#708653"></i><i title="50–65 m" style="--swatch:#b18e4f"></i><i title="65–80 m" style="--swatch:#b86648"></i><i title="Above 80 m" style="--swatch:#744d5c"></i>
+          </div>
+          <label class="control">
+            <span>Fine pen width <output id="lineValue">0.30 mm</output></span>
+            <input id="lineWidth" type="range" min="0.1" max="1" value="0.3" step="0.05">
+          </label>
+          <label class="control">
+            <span>Coarse pen width <output id="indexLineValue">0.50 mm</output></span>
+            <input id="indexLineWidth" type="range" min="0.1" max="1" value="0.5" step="0.05">
+          </label>
+          <label class="control">
+            <span>Contour smoothness <output id="smoothValue">25%</output></span>
+            <input id="smoothing" type="range" min="0" max="100" value="25" step="5">
+          </label>
+          <label class="switch-row"><input id="contoursVisible" type="checkbox" checked><span>Show contours</span></label>
+        </section>
+
+        <section>
+          <h2>3D print export</h2>
+          <label class="control compact">
+            <span>Nozzle diameter <output id="nozzleValue">0.40 mm</output></span>
+            <input id="nozzleDiameter" type="range" min="0.2" max="0.8" value="0.4" step="0.05">
+          </label>
+          <label class="select-row"><span>Fine contour height</span>
+            <select id="fineTopoLayers">
+              <option value="1" selected>1 layer · 0.20 mm</option>
+              <option value="2">2 layers · 0.40 mm</option>
+              <option value="3">3 layers · 0.60 mm</option>
+            </select>
+          </label>
+          <label class="select-row"><span>Index contour height</span>
+            <select id="indexTopoLayers">
+              <option value="1">1 layer · 0.20 mm</option>
+              <option value="2" selected>2 layers · 0.40 mm</option>
+              <option value="3">3 layers · 0.60 mm</option>
+            </select>
+          </label>
+          <p class="help">STL dimensions follow the selected paper shape. Contour widths use the fine and coarse pen settings, with the nozzle diameter as their minimum printable width. Fine and index contours may use different heights; the backed export adds a 1.00 mm rectangular base.</p>
+          <div class="export-grid">
+            <button id="bambu3mfBtn" class="export primary">Save A1 print-ready 3MF</button>
+            <button id="lineStlBtn" class="export">Save line STL</button>
+            <button id="baseStlBtn" class="export">Save backed STL</button>
+            <button id="orderedPlanBtn" class="export">Save ordered path plan</button>
+          </div>
+          <p id="stlStatus" class="help export-progress" role="status" aria-live="polite"></p>
+          <p class="help">The A1 package follows the selected paper shape when it fits the 256 mm bed. It is already sliced for a 0.40 mm nozzle, 0.20 mm layers, a 1.00 mm white base, and black contours. Open it in Bambu Studio and print the sliced plate; do not slice it again.</p>
+          <p class="help">The ordered plan stores true centerlines in millimetres: all fine contours first, index contours second, then the zero/coast boundary. Paths are spatially ordered and reversed where useful to reduce travel. It is the input for an exact G-code / sliced-3MF wrapper; it is not standalone printer G-code.</p>
+        </section>
+
+        <section>
+          <h2>Reference layers</h2>
+          <label class="switch-row"><input id="roadsVisible" type="checkbox" checked><span>Roads and labels</span></label>
+          <label class="control compact">
+            <span>Road opacity <output id="roadsValue">62%</output></span>
+            <input id="roadsOpacity" type="range" min="0" max="100" value="62" step="1">
+          </label>
+          <label class="switch-row"><input id="reliefVisible" type="checkbox" checked><span>Terrain shading</span></label>
+          <label class="control compact">
+            <span>Relief opacity <output id="reliefValue">100%</output></span>
+            <input id="reliefOpacity" type="range" min="0" max="100" value="100" step="1">
+          </label>
+          <label id="addressRow" class="switch-row"><input id="addressVisible" type="checkbox" checked><span>Mark selected location</span></label>
+        </section>
+
+        <section id="presetSection">
+          <h2>Interesting regions</h2>
+          <div id="presetGrid" class="preset-grid"></div>
+        </section>
+
+        <section>
+          <h2>Plot crop</h2>
+          <label class="control">
+            <span>Crop width <output id="cropValue">2.8 km</output></span>
+            <input id="cropWidth" type="range" min="0.4" max="50" value="2.8" step="0.1">
+          </label>
+          <label class="select-row"><span>Paper shape</span>
+            <select id="aspect">
+              <option value="1.4">5×7 landscape</option>
+              <option value="0.7142857">5×7 portrait</option>
+              <option value="1">Square</option>
+              <option value="1.2941176">8½×11 landscape</option>
+            </select>
+          </label>
+          <label class="switch-row"><input id="cropVisible" type="checkbox" checked><span>Show crop frame</span></label>
+          <label class="switch-row"><input id="edgeCleanup" type="checkbox" checked><span>Clear crop boundary</span></label>
+          <div id="edgeSettings" class="sub-controls">
+            <label class="control compact">
+              <span>Boundary clearance <output id="edgeClearanceValue">0.50 mm</output></span>
+              <input id="edgeClearance" type="range" min="0" max="2" value="0.5" step="0.25">
+            </label>
+            <p class="help">Contours are shortened only within this distance of the crop frame. Their interior and visible outside continuation remain unchanged.</p>
+          </div>
+          <div class="export-grid">
+            <button id="svgBtn" class="export">Save SVG</button>
+            <button id="pngBtn" class="export">Copy PNG</button>
+          </div>
+          <button id="exportBtn" class="export">Download crop bounds</button>
+          <p id="exportStatus" class="help"></p>
+        </section>
+
+        <section>
+          <h2>Saved views</h2>
+          <div id="savedSlots" class="saved-slots">
+            <div data-slot="1"><span>Slot 1</span><button data-action="load">Load</button><button data-action="save">Save</button></div>
+            <div data-slot="2"><span>Slot 2</span><button data-action="load">Load</button><button data-action="save">Save</button></div>
+            <div data-slot="3"><span>Slot 3</span><button data-action="load">Load</button><button data-action="save">Save</button></div>
+          </div>
+          <p id="saveStatus" class="help">Saved separately for each region in this browser.</p>
+        </section>
+
+        <section class="readout">
+          <h2>Current view</h2>
+          <dl>
+            <div><dt>Center</dt><dd id="centerReadout">—</dd></div>
+            <div><dt>Visible area</dt><dd id="sizeReadout">—</dd></div>
+            <div><dt>Source</dt><dd id="sourceReadout">USGS lidar, fall 2024</dd></div>
+          </dl>
+        </section>
+      </aside>
+    </section>
+  </main>
+  <script src="app.js?v=20261018aj"></script>
+</body>
+</html>

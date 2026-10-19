@@ -1,0 +1,23 @@
+{
+  "noaaDataset": "NCEI CUDEM ninth arc-second bathymetric-topographic tiles",
+  "noaaTileVintages": "2022\u20132023 within this crop",
+  "usgsService": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+  "processing": "NOAA CUDEM bilinearly resampled to 60 m UTM Zone 10N; positive current USGS 3DEP land elevations replace the CUDEM land surface.",
+  "geoBounds": [
+    -123.05,
+    37.05,
+    -121.75,
+    38.62
+  ],
+  "bounds": [
+    495554.11120069976,
+    4100419.1226931815,
+    611174.1112006998,
+    4275379.122693181
+  ],
+  "shape": [
+    2916,
+    1927
+  ],
+  "pixelSizeMeters": 60.0
+}
