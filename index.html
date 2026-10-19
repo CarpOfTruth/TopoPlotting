@@ -102,6 +102,14 @@
             <span>Nozzle diameter <output id="nozzleValue">0.40 mm</output></span>
             <input id="nozzleDiameter" type="range" min="0.2" max="0.8" value="0.4" step="0.05">
           </label>
+          <label class="select-row"><span>Base thickness</span>
+            <select id="baseLayers">
+              <option value="2">2 layers · 0.40 mm</option>
+              <option value="3">3 layers · 0.60 mm</option>
+              <option value="4">4 layers · 0.80 mm</option>
+              <option value="5" selected>5 layers · 1.00 mm</option>
+            </select>
+          </label>
           <label class="select-row"><span>Fine contour height</span>
             <select id="fineTopoLayers">
               <option value="1" selected>1 layer · 0.20 mm</option>
@@ -116,7 +124,7 @@
               <option value="3">3 layers · 0.60 mm</option>
             </select>
           </label>
-          <p class="help">STL dimensions follow the selected paper shape. Contour widths use the fine and coarse pen settings, with the nozzle diameter as their minimum printable width. Fine and index contours may use different heights; the backed export adds a 1.00 mm rectangular base.</p>
+          <p class="help">STL dimensions follow the selected paper shape. Contour widths use the fine and coarse pen settings, with the nozzle diameter as their minimum printable width. Fine and index contours may use different heights; the backed export uses the selected base thickness.</p>
           <div class="export-grid">
             <button id="bambu3mfBtn" class="export primary">Save A1 print-ready 3MF</button>
             <button id="lineStlBtn" class="export">Save line STL</button>
@@ -124,7 +132,7 @@
             <button id="orderedPlanBtn" class="export">Save ordered path plan</button>
           </div>
           <p id="stlStatus" class="help export-progress" role="status" aria-live="polite"></p>
-          <p class="help">The A1 package follows the selected paper shape when it fits the 256 mm bed. It is already sliced for a 0.40 mm nozzle, 0.20 mm layers, a 1.00 mm white base, and black contours. Open it in Bambu Studio and print the sliced plate; do not slice it again.</p>
+          <p class="help">The A1 package follows the selected paper shape when it fits the 256 mm bed. It is already sliced for a 0.40 mm nozzle, 0.20 mm layers, the selected white base, and black contours. Open it in Bambu Studio and print the sliced plate; do not slice it again. Two-layer bases are intentionally delicate; use four or five layers when stiffness matters.</p>
           <p class="help">The ordered plan stores true centerlines in millimetres: all fine contours first, index contours second, then the zero/coast boundary. Paths are spatially ordered and reversed where useful to reduce travel. It is the input for an exact G-code / sliced-3MF wrapper; it is not standalone printer G-code.</p>
         </section>
 
@@ -200,6 +208,6 @@
       </aside>
     </section>
   </main>
-  <script src="app.js?v=20261018ak"></script>
+  <script src="app.js?v=20261018al"></script>
 </body>
 </html>
